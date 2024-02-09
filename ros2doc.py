@@ -14,10 +14,14 @@ import sys
 ACTUALLY_RUN_DOCGEN = True
 
 def run_shell_command(cmd, in_path=None):
+    """"""
+    
     print("running command in path [%s]: %s" % (in_path, cmd))
     subprocess.call(cmd, shell=True, cwd=in_path)
 
 def update_symlink(target, link_name):
+    """"""
+    
     # http://stackoverflow.com/questions/8299386/modifying-a-symlink-in-python
     try:
         os.symlink(target, link_name)
@@ -29,12 +33,16 @@ def update_symlink(target, link_name):
             raise e
 
 def jinja_autoescape(template_name):
+    """"""
+    
     if template_name is None:
         return False
     if template_name.endswith(('.html')):
         return True
 
 def parse_pkgs():
+    """"""
+    
     basepath = sys.argv[1]
     print("running on sourcepath {0}".format(basepath))
     pkg_paths = ament_tools.verbs.list_packages.find_package_paths(basepath)
@@ -49,6 +57,8 @@ def parse_pkgs():
     return pkgs
 
 def generate_pkg_doc(pkgs_doc_path, pkgs_html_root, pkg, dep_pkgs, jinja_env):
+    """"""
+    
     # first, we need to copy the sources somewhere temporary because we'll
     # probably generate debris that we don't want to clutter up the source tree
     pkg_copy_path = os.path.join(pkgs_doc_path, pkg['name'])
@@ -109,6 +119,8 @@ def generate_pkg_doc(pkgs_doc_path, pkgs_html_root, pkg, dep_pkgs, jinja_env):
     summary_file.close()
 
 def make_index(index_filename, pkgs, jinja_env):
+    """"""
+    
     index_template = jinja_env.get_template('index.html')
     print("creating index file at {0}".format(index_filename))
     index_file = open(index_filename, 'w')

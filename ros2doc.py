@@ -126,7 +126,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     print(args)
 
-    jinja_env = jinja2.Environment(loader=jinja2.PackageLoader('ros2doc', 'templates'), autoescape=jinja_autoescape)
+    jinja_env = jinja2.Environment(loader=jinja2.PackageLoader('ros2doc', 'templates'), autoescape=True)
     now = datetime.datetime.now()
     buildpath = os.path.abspath(os.path.join('docbuild', now.strftime('%Y%m%d.%H%M%S')))
     os.makedirs(buildpath)
